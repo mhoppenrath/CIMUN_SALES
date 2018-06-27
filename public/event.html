@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Lato|Roboto|Shrikhand" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- meta data-->
+     <title>Potlucky - eventName</title>
+     <meta name="description" content="Potlucky helps you create, manage and organize better gatherings." />
+
+</head>
+<body>
+
+	<!--facebook analytics-->
+	<div id="fb-root"></div>
+
+	<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '641150372941911',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v2.11'
+    });
+      
+    FB.AppEvents.logPageView();   
+      
+  };
+
+		(function(d, s, id) {
+  		var js, fjs = d.getElementsByTagName(s)[0];
+  		if (d.getElementById(id)) return;
+  		js = d.createElement(s); js.id = id;
+  		js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=641150372941911';
+  		fjs.parentNode.insertBefore(js, fjs);
+			}(document, 'script', 'facebook-jssdk'));</script>
+
+  <!--(function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "https://connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));-->
+	</script>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Potlucky!</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="profile.html">My Profile<span class="sr-only">(current)</span></a></li>
+        <li class="active"><a href="event-admin.html">New Potluck</a></li>
+				<li><a href="#aboutModal" data-toggle="modal" data-target="#aboutModal">About</a></li>
+				<li><a href="https://github.com/chadobryhim/potlucky" target="_blank">Github</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#loginModal" data-toggle="modal" data-target="#loginModal">Login</a></li>
+      </ul>
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+	</nav>
+
+	<div class="container">
+	<div class="jumbotron">
+		<div id="target" class="container">
+		  <h2>eventName</h2>
+			<div class="row">
+			  <div class="col-xs-12">host</div>
+			</div>
+			<div class="row">
+			  <div class="col-xs-6">e-mail</div>
+			  <div class="col-xs-6">tel</div>
+			</div>
+			<div class="row">
+			  <div class="col-xs-6">date</div>
+			  <div class="col-xs-3">timeStart</div>
+				<div class="col-xs-3">timeEnd</div>
+			</div>
+			<div class="row">
+			  <div class="col-xs-12">location</div>
+			</div>
+			<div class="row">
+			  <div class="col-xs-12">notes</div>
+			</div>
+			<div class="row">
+			  <div class="col-xs-12">url</div>
+			</div>
+		</div>
+
+		<div class="container">
+		  <h3>Items</h3>
+			<table id="eventItems" class="table table-striped" cellspacing="0" width="100%">
+				<thead>
+					<tr>
+						<th></th>
+						<th>Category</th>
+						<th>Item</th>
+						<th>Contributor</th>
+						<th>Amount</th>
+						<th>Description</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<th scope=row>1</th>
+						<td>itemCategory</td>
+						<td>itemName</td>
+						<td>itemContributor</td>
+						<td>itemAmount</td>
+						<td>itemDescription</td>
+						<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <i class="fa fa-files-o" aria-hidden="true"></i> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+					</tr>
+					<tr>
+						<th scope=row>2</th>
+						<td>itemCategory</td>
+						<td>itemName</td>
+						<td>itemContributor</td>
+						<td>itemAmount</td>
+						<td>itemDescription</td>
+						<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <i class="fa fa-files-o" aria-hidden="true"></i> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+					</tr>
+					<tr>
+						<th scope=row>3</th>
+						<td>itemCategory</td>
+						<td>itemName</td>
+						<td>itemContributor</td>
+						<td>itemAmount</td>
+						<td>itemDescription</td>
+						<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <i class="fa fa-files-o" aria-hidden="true"></i> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+					</tr>
+				</tbody>
+			</table>
+			<br>
+			<a href="#addItemModal" data-toggle="modal" data-target="#addItemModal" class="btn btn-primary">Add an Item</a>
+			<a href="#" class="btn btn-primary" id="btn-share" data-modal-title="Share Event" data-facebook-label="Share on Facebook" data-twitter-label="Share on Twitter" data-twitter-text="Twitter Text" data-linkedin-label="Share on LinkedIn" data-linkedin-title="LinkedIn Title" data-linkedin-summary="LinkedIn Summary" data-email-label="Share via Email" data-email-subject="Email Subject">Share Event</a>
+		  <button type="button" class="btn btn-primary">Add to Profile</button>
+		    <div class="span pull-right alert alert-success fade">
+		      <button type="button" class="close" data-dismiss="alert">×</button>
+		      <strong>Success!</strong> Event added to your profile.
+		    </div>
+		</div>
+
+	</div>
+</div>
+
+
+
+<!-- Modal -->
+
+<div class="modal fade" id="addItemModal" tabindex="-1" role="dialog" aria-labelledby="addItemModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add Item</h4>
+      </div>
+      <div class="modal-body">
+				<form action="http://localhost:8080" method="POST">
+					<div class="form-group">
+					  <label for="itemCategory">Category:</label>
+					  <select class="form-control" id="itemCategory">
+					    <option>Entree</option>
+					    <option>Side Dish</option>
+					    <option>Appetizer</option>
+					    <option>Salad</option>
+							<option>Dessert</option>
+					    <option>Beverage</option>
+					    <option>Other</option>
+					  </select>
+					</div>
+					<div class="form-group">
+			      <label for="text">Item Name:</label>
+			      <input type="text" class="form-control" id="itemName" placeholder="Item name" name="itemName">
+			    </div>
+					<div class="form-group">
+			      <label for="text">Contributor:</label>
+			      <input type="text" class="form-control" id="itemContributor" placeholder="Contributor" name="itemContributor">
+			    </div>
+					<div class="form-group">
+			      <label for="text">Amount:</label>
+			      <input type="text" class="form-control" id="itemAmount" placeholder="Amount" name="itemAmount">
+			    </div>
+					<div class="form-group">
+						<label for="text">Description:</label>
+						<textarea class="form-control" rows="2" input type="text" id="itemDescription" placeholder="Item description" name="itemDescription"></textarea>
+					</div>
+			    <button type="submit" class="btn btn-primary">Submit</button>
+			  </form>
+      </div>
+    </div>
+  </div>
+			<div class="fb-comments" data-href="https://developers.facebook.com/docs/plugins/comments#configurator" data-numposts="7"></div>
+
+</div>
+
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Get Started</h4>
+      </div>
+      <div class="modal-body">
+        <div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=641150372941911';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+					<script>
+  		window.fbAsyncInit = function() {
+    	FB.init({
+      		appId      : '641150372941911',
+      		cookie     : true,
+      		xfbml      : true,
+      		version    : 'v2.11'
+    	});
+
+    	FB.AppEvents.logPageView();
+
+			FB.Event.subscribe('xfbml.render', finished_rendering);
+
+
+  	};
+
+  		(function(d, s, id){
+     		var js, fjs = d.getElementsByTagName(s)[0];
+     		if (d.getElementById(id)) {return;}
+     		js = d.createElement(s); js.id = id;
+     		js.src = "https://connect.facebook.net/en_US/sdk.js";
+     		fjs.parentNode.insertBefore(js, fjs);
+   		}(document, 'script', 'facebook-jssdk'));
+
+	</script>
+
+
+<fb:login-button
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
+
+<br>
+<br>
+
+<div class="fb-login-button" data-width="30" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
+				<br>
+				<br>
+
+	<div
+		class="fb-login-button"
+		data-max-rows="1"
+		data-size="large"
+		data-button-type="continue_with"
+		data-show-faces="false"
+		data-auto-logout-link="true"
+		data-use-continue-as="true"
+		></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="aboutModal">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">What is this?</h4>
+      </div>
+      <div class="modal-body">
+				<p>Potlucky is a tool to help party planners be more organized.</p>
+				<p>You can create a quick, simple, custom online sign-up sheet for friends and family.
+		    As the event host, you pick the categories so whether it's food, drinks, or volunteers, Potlucky.com makes it easy to plan events!</p>
+				<p>If you have any feedback, please <A HREF="">contact us</A>.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Handlebars -->
+
+	<script id="template" type="text/x-handlebars-template">
+			<div class="container">
+			<h2>{{eventName}}</h2>
+			<div class="row">
+				<div class="col-xs-12"><strong>Host:</strong> {{host}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6"><strong>Contact:</strong> {{email}}</div>
+				<div class="col-xs-6">{{tel}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2"><strong>Details:</strong> {{date}}</div>
+				<div class="col-xs-2">{{timeStart}} - {{timeEnd}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">{{location}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12"><strong>Notes:</strong> {{notes}}</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12">{{url}}</div>
+			</div>
+		</div>
+	</script>
+
+	<script src="https://use.fontawesome.com/4913a2be10.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link rel="stylesheet" href="https://use.fontawesome.com/4913a2be10.js">
+	<script type="text/javascript" src="../script.js"></script>
+	<script type="text/javascript" src="../node_modules/handlebars/dist/handlebars.js"></script>
+	<script type="text/javascript">
+		$('#myModal').on('shown.bs.modal', function () {
+	  $('#myInput').focus()
+	})
+	</script>
+	<script type="text/javascript" src="login.js"></script> 
+	<script type="text/javascript" src="fbToken.js"></script>
+
+
+	<script>
+  		window.fbAsyncInit = function() {
+    		FB.init({
+    		  appId      : '{641150372941911}',
+    		  cookie     : true,
+    		  xfbml      : true,
+    		  version    : '{v2.11}'
+   			});
+      
+    	FB.AppEvents.logPageView();   
+      
+  		};
+
+  		(function(d, s, id){
+     		var js, fjs = d.getElementsByTagName(s)[0];
+     		if (d.getElementById(id)) {return;}
+     		js = d.createElement(s); js.id = id;
+     		js.src = "https://connect.facebook.net/en_US/sdk.js";
+     		fjs.parentNode.insertBefore(js, fjs);
+  		}(document, 'script', 'facebook-jssdk'));
+	</script>
+	<!--<script>
+		'use strict';
+		FB.getLoginStatus(function(response) {
+			statusChangeCallback(response);
+		});
+
+		{
+			status: 'connected',
+			authResponse: {
+				accessToken: '...',
+				expiresIn: '...',
+				signedRequest: '...',
+				userID: '...'
+			}
+		}
+	</script>-->
+
+</body>
+</html>

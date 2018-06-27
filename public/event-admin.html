@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html>
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,23 +10,13 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- meta data-->
-     <title>Potlucky - Let's Start a Party</title>
+     <title>Potlucky - Event Admin</title>
      <meta name="description" content="Potlucky helps you create, manage and organize better gatherings." />
 
 </head>
 <body>
-	<!--JavaScript SDK-->
-	<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=641150372941911';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
 
-	<!--facebook analytics-->
-
+<!--facebook analytics-->
 <script>
   window.fbAsyncInit = function() {
     FB.init({
@@ -34,9 +25,9 @@
       xfbml      : true,
       version    : 'v2.11'
     });
-
-    FB.AppEvents.logPageView();
-
+      
+    FB.AppEvents.logPageView();   
+      
   };
 
   (function(d, s, id){
@@ -48,42 +39,6 @@
    }(document, 'script', 'facebook-jssdk'));
 </script>
 
-
-<script id="template" type="text/x-handlebars-template">
-			<div class="container">
-			<h2>{{eventName}}</h2>
-			<div class="row">
-				<div class="col-xs-12"><strong>Host:</strong> {{host}}</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-6"><strong>Contact:</strong> {{email}}</div>
-				<div class="col-xs-6">{{tel}}</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-2"><strong>Details:</strong> {{date}}</div>
-				<div class="col-xs-2">{{timeStart}} - {{timeEnd}}</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">{{location}}</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12"><strong>Notes:</strong> {{notes}}</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">{{url}}</div>
-			</div>
-		</div>
-	</script>
-
-	<!--Facebook SDK-->
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11';
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
-
 	<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
@@ -94,14 +49,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Potlucky!</a>
+      <a class="navbar-brand" href="#"><a href="index.html">Potlucky!</a></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="profile.html">My Profile<span class="sr-only">(current)</span></a></li>
-        <li><a href="event-admin.html">New Potluck</a></li>
+        <li class="active"><a href="event-admin.html">New Potluck</a></li>
 				<li><a href="#aboutModal" data-toggle="modal" data-target="#aboutModal">About</a></li>
 				<li><a href="https://github.com/chadobryhim/potlucky" target="_blank">Github</a></li>
       </ul>
@@ -114,80 +69,63 @@
 
 <div class="container">
 <div class="jumbotron">
-	<div class="page-header">
-	  <h1><a href="index.html">Potlucky!</a></h1>
+	<div class="container">
+	  <h2>Event Administration</h2>
+	  <form action="http://localhost:8080" method="POST">
+			<div class="form-group">
+	      <label for="text">Host Name:</label>
+	      <input type="text" class="form-control" id="host" placeholder="Your name" name="host">
+	    </div>
+	    <div class="form-group">
+	      <label for="email">Host Email:</label>
+	      <input type="email" class="form-control" id="email" placeholder="your@e-mail.com" name="email">
+	    </div>
+	    <div class="form-group">
+	      <label for="tel">Host Phone:</label>
+	      <input type="tel" class="form-control" id="tel" placeholder="(000) 000-0000" name="tel">
+	    </div>
+			<div class="form-group">
+	      <label for="text">Event Name:</label>
+	      <input type="text" class="form-control" id="eventName" placeholder="Potluck-Palooza 2K18" name="eventName">
+	    </div>
+			<div class="form-group">
+	      <label for="date">Date:</label>
+	      <input type="date" class="form-control" id="date" name="date">
+	    </div>
+			<div class="form-group">
+	      <label for="time">Start Time:</label>
+	      <input type="time" class="form-control" id="timeStart" name="timeStart">
+	    </div>
+			<div class="form-group">
+	      <label for="time">End Time:</label>
+	      <input type="time" class="form-control" id="timeEnd" name="timeEnd">
+	    </div>
+			<div class="form-group">
+	      <label for="text">Location:</label>
+	      <input type="text" class="form-control" id="location" placeholder="123 Street, City, State" name="location">
+	    </div>
+			<div class="form-group">
+	      <label for="text">Aditional Notes:</label>
+	      <textarea class="form-control" rows="3" input type="text" id="notes" placeholder="Time of meal, theme info, explicit directions, alcohol policy, links to more information, etc." name="notes"></textarea>
+	    </div>
+			<div class="form-group">
+	      <label for="url">External Link:</label>
+	      <input type="url" class="form-control" id="url" placeholder="i.e. Facebook event" name="url">
+	    </div>
+			<div class="form-group">
+				<label class="checkbox-inline">
+				  <input type="checkbox" id="emailUpdates" value="emailUpdates"> E-mail me all updates and changes to this event.
+				</label>
+			<div>
+			<div class="form-group">
+				<label class="checkbox-inline">
+				  <input type="checkbox" id="guestUpdates" value="guestUpdates"> Allow guests to update and add items to this event.
+				</label>
+			<div>
+			<br>
+	    <button type="submit" class="btn btn-primary">Submit</button>
+	  </form>
 	</div>
-
-					<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=641150372941911';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-					<script>
-  		window.fbAsyncInit = function() {
-    	FB.init({
-      		appId      : '641150372941911',
-      		cookie     : true,
-      		xfbml      : true,
-      		version    : 'v2.11'
-    	});
-
-    	FB.AppEvents.logPageView();
-
-			FB.Event.subscribe('xfbml.render', finished_rendering);
-
-
-  	};
-
-  		(function(d, s, id){
-     		var js, fjs = d.getElementsByTagName(s)[0];
-     		if (d.getElementById(id)) {return;}
-     		js = d.createElement(s); js.id = id;
-     		js.src = "https://connect.facebook.net/en_US/sdk.js";
-     		fjs.parentNode.insertBefore(js, fjs);
-   		}(document, 'script', 'facebook-jssdk'));
-	</script>
-
-
-<!--<fb:login-button
-  scope="public_profile,email"
-  onlogin="checkLoginState();">
-</fb:login-button>-->
-
-<!--<div class="fb-login-button" data-width="20" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>-->
-
-
-	<div class="panel panel-primary">
-	  <div class="panel-heading">
-	    <h2 class="panel-title">Let's plan a party together</h2>
-	  </div>
-	  <div class="panel-body">
-			<p>Log in to create a simple sign-up to organize dishes at your next potluck.
-			<br>Sign up is not required to participate in an existing event.</p>
-	  </div>
-	</div>
-
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">
-	  Get Started
-	</button>
-
-	<!--Facebook Login Button -->
-	<script>
-	var finished_rendering = function() {
-	console.log("finished rendering plugins");
-	var spinner = document.getElementById("spinner");
-	spinner.removeAttribute("style");
-	spinner.removeChild(spinner.childNodes[0]);
-	}
-	</script>
-
-	
-
 </div>
 
 <!-- Modal -->
@@ -199,7 +137,7 @@
         <h4 class="modal-title" id="myModalLabel">Get Started</h4>
       </div>
       <div class="modal-body">
-				<div id="fb-root"></div>
+        <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -256,8 +194,6 @@
 		data-auto-logout-link="true"
 		data-use-continue-as="true"
 		></div>
-
-		
       </div>
     </div>
   </div>
@@ -276,15 +212,9 @@
 		    As the event host, you pick the categories so whether it's food, drinks, or volunteers, Potlucky.com makes it easy to plan events!</p>
 				<p>If you have any feedback, please <A HREF="">contact us</A>.</p>
       </div>
-			<div>
-</script>
-</div>
     </div>
   </div>
 </div>
-</div>
-
-</body>
 
 	<script src="https://use.fontawesome.com/4913a2be10.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -293,34 +223,10 @@
 	<script type="text/javascript">
 		$('#myModal').on('shown.bs.modal', function () {
 	  $('#myInput').focus()
-	});
+	})
 	</script>
-	<script src="text/javascript" src="login.js"></script>
-	<script src="text/javascript" src="fbToken.js"></script>
-	<!--<script type='text/javascript' src='js/handlebars-v4.0.11.js'></script>
-	<script type='text/javascript' src='js/name-table.js'></script>-->
+	<script type="text/javascript" src="login.js"></script>
+	<script type="text/javascript" src="fbToken.js"></script>
 
-
-	<!--<script>
-  		window.fbAsyncInit = function() {
-    	FB.init({
-      		appId      : '641150372941911',
-      		cookie     : true,
-      		xfbml      : true,
-      		version    : 'v2.11'
-    	});
-
-    	FB.AppEvents.logPageView();
-
-  	};
-
-  		(function(d, s, id){
-     		var js, fjs = d.getElementsByTagName(s)[0];
-     		if (d.getElementById(id)) {return;}
-     		js = d.createElement(s); js.id = id;
-     		js.src = "https://connect.facebook.net/en_US/sdk.js";
-     		fjs.parentNode.insertBefore(js, fjs);
-   		}(document, 'script', 'facebook-jssdk'));
-	</script>-->
-	<!--<script type="text/javascript" src="/..server.js"-->
+</body>
 </html>

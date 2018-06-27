@@ -1,65 +1,39 @@
-// @author: Thomas Thompson
-// @github: tomtom28
-// @comment: HW for Week 19 - NY Time Article Search with ReactJS! Whoo!
-
-
-// Require Node Modules
-var express = require('express');
-var bodyParser = require('body-parser');
-var mongoose = require('mongoose');
-var logger = require('morgan'); // for debugging
-
-
-
-// Initialize Express for debugging & body parsing
+// Dependencies
+var http = require("http");
+var dbURL= "otwsl2e23jrxcqvx.cbetxkdyhwsb.us-east-1.rds.amazonaws.com"
+var PORT = process.env.PORT || 9000;
+var path = require("path");
+var express = require("express");
 var app = express();
-app.use(logger('dev'));
-app.use(bodyParser.urlencoded({
-  extended: false
-}));
+var bodyParser = require("body-parser");
+
+//the section for setting up the db
+////////////////////////////////////////////////////////////
+
+var dbMethods = require('./controllers/dbMethod.js');
+var models = require('./models'); // Pulls out the potluck Models
+
+// Extracts the sequelize connection from the models object makes the various assocation
+var sequelizeConnection = models.sequelize;
+dbMethods.associate();
 
 
-// Serve Static Content
-app.use(express.static(process.cwd() + '/public'));
+sequelizeConnection.sync({force: true}).then(dbMethods.initTables).then(dbMethods.initDummies);
+//////////////////////////////////////////////////////////////////////
 
-
-
-// Database Configuration with Mongoose
-// ---------------------------------------------------------------------------------------------------------------
-// Connect to localhost if not a production environment
-if(process.env.NODE_ENV == 'production'){
-  // Gotten using `heroku config | grep MONGODB_URI` command in Command Line
-  mongoose.connect(' mongodb://heroku_r4mrbtbf:rvn8v734rrhm3esgrsgr2n7pj6@ds125906.mlab.com:25906/heroku_r4mrbtbf');
-}
-else{
-  mongoose.connect('mongodb://localhost/nytreact');
-}
-var db = mongoose.connection;
-
-// Show any Mongoose errors
-db.on('error', function(err) {
-  console.log('Mongoose Error: ', err);
-});
-
-// Once logged in to the db through mongoose, log a success message
-db.once('open', function() {
-  console.log('Mongoose connection successful.');
-});
-
-// Import the Article model
-var Article = require('./models/Article.js');
-// ---------------------------------------------------------------------------------------------------------------
-
-
-
-// Import Routes/Controller
-var router = require('./controllers/controller.js');
+// Use express.static to serve the public folder as a static directory
+app.use(express.static("public"));
+var router = require('./routes/htmlRoutes.js');
 app.use('/', router);
 
 
+//body parser
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.text());
+app.use(bodyParser.json({type: 'application/vnd.api+json'}));
 
-// Launch App
-var port = process.env.PORT || 3000;
-app.listen(port, function(){
-  console.log('Running on port: ' + port);
+// Starts our server.
+app.listen(PORT, function() {
+  console.log("Server listening on: http://localhost:%s", PORT);
 });

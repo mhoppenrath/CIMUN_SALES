@@ -1,32 +1,24 @@
 <!DOCTYPE html>
+<html>
 <head>
 	<meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!--Data Tables example https://datatables.net/examples/styling/bootstrap.html-->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/dataTables.bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css?family=Lato|Roboto|Shrikhand" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 
     <!-- meta data-->
-     <title>Potlucky - Let's Start a Party</title>
+     <title>Potlucky - Event Admin</title>
      <meta name="description" content="Potlucky helps you create, manage and organize better gatherings." />
 
 </head>
 <body>
-	<!--JavaScript SDK-->
-	<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=641150372941911';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
 	<!--facebook analytics-->
-
-<script>
+	<script>
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '641150372941911',
@@ -34,9 +26,9 @@
       xfbml      : true,
       version    : 'v2.11'
     });
-
-    FB.AppEvents.logPageView();
-
+      
+    FB.AppEvents.logPageView();   
+      
   };
 
   (function(d, s, id){
@@ -49,40 +41,6 @@
 </script>
 
 
-<script id="template" type="text/x-handlebars-template">
-			<div class="container">
-			<h2>{{eventName}}</h2>
-			<div class="row">
-				<div class="col-xs-12"><strong>Host:</strong> {{host}}</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-6"><strong>Contact:</strong> {{email}}</div>
-				<div class="col-xs-6">{{tel}}</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-2"><strong>Details:</strong> {{date}}</div>
-				<div class="col-xs-2">{{timeStart}} - {{timeEnd}}</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">{{location}}</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12"><strong>Notes:</strong> {{notes}}</div>
-			</div>
-			<div class="row">
-				<div class="col-xs-12">{{url}}</div>
-			</div>
-		</div>
-	</script>
-
-	<!--Facebook SDK-->
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11';
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
 
 	<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
@@ -94,14 +52,14 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Potlucky!</a>
+      <a class="navbar-brand" href="#"><a href="index.html">Potlucky!</a></a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
         <li><a href="profile.html">My Profile<span class="sr-only">(current)</span></a></li>
-        <li><a href="event-admin.html">New Potluck</a></li>
+        <li class="active"><a href="event-admin.html">New Potluck</a></li>
 				<li><a href="#aboutModal" data-toggle="modal" data-target="#aboutModal">About</a></li>
 				<li><a href="https://github.com/chadobryhim/potlucky" target="_blank">Github</a></li>
       </ul>
@@ -114,80 +72,41 @@
 
 <div class="container">
 <div class="jumbotron">
-	<div class="page-header">
-	  <h1><a href="index.html">Potlucky!</a></h1>
+	<div class="container">
+	  <h2>User Profile</h2>
+		<table id="userEvents" class="table table-striped" cellspacing="0" width="100%">
+			<thead>
+				<tr>
+					<th></th>
+					<th>Event Name</th>
+					<th>Date</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<th scope=row>1</th>
+					<td>eventName1</td>
+					<td>date4</td>
+					<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <i class="fa fa-files-o" aria-hidden="true"></i> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+				</tr>
+				<tr>
+					<th scope=row>2</th>
+					<td>eventName2</td>
+					<td>date5</td>
+					<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <i class="fa fa-files-o" aria-hidden="true"></i> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+				</tr>
+				<tr>
+					<th scope=row>3</th>
+					<td>eventName3</td>
+					<td>date6</td>
+					<td><i class="fa fa-pencil-square-o" aria-hidden="true"></i> <i class="fa fa-files-o" aria-hidden="true"></i> <i class="fa fa-trash-o" aria-hidden="true"></i></td>
+				</tr>
+			</tbody>
+		</table>
+		<br>
+		<button type="submit" class="btn btn-primary"><a href="event-admin.html">Create an Event</a></button>
 	</div>
-
-					<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=641150372941911';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-					<script>
-  		window.fbAsyncInit = function() {
-    	FB.init({
-      		appId      : '641150372941911',
-      		cookie     : true,
-      		xfbml      : true,
-      		version    : 'v2.11'
-    	});
-
-    	FB.AppEvents.logPageView();
-
-			FB.Event.subscribe('xfbml.render', finished_rendering);
-
-
-  	};
-
-  		(function(d, s, id){
-     		var js, fjs = d.getElementsByTagName(s)[0];
-     		if (d.getElementById(id)) {return;}
-     		js = d.createElement(s); js.id = id;
-     		js.src = "https://connect.facebook.net/en_US/sdk.js";
-     		fjs.parentNode.insertBefore(js, fjs);
-   		}(document, 'script', 'facebook-jssdk'));
-	</script>
-
-
-<!--<fb:login-button
-  scope="public_profile,email"
-  onlogin="checkLoginState();">
-</fb:login-button>-->
-
-<!--<div class="fb-login-button" data-width="20" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>-->
-
-
-	<div class="panel panel-primary">
-	  <div class="panel-heading">
-	    <h2 class="panel-title">Let's plan a party together</h2>
-	  </div>
-	  <div class="panel-body">
-			<p>Log in to create a simple sign-up to organize dishes at your next potluck.
-			<br>Sign up is not required to participate in an existing event.</p>
-	  </div>
-	</div>
-
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">
-	  Get Started
-	</button>
-
-	<!--Facebook Login Button -->
-	<script>
-	var finished_rendering = function() {
-	console.log("finished rendering plugins");
-	var spinner = document.getElementById("spinner");
-	spinner.removeAttribute("style");
-	spinner.removeChild(spinner.childNodes[0]);
-	}
-	</script>
-
-	
-
 </div>
 
 <!-- Modal -->
@@ -199,7 +118,7 @@
         <h4 class="modal-title" id="myModalLabel">Get Started</h4>
       </div>
       <div class="modal-body">
-				<div id="fb-root"></div>
+        <div id="fb-root"></div>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) return;
@@ -256,8 +175,6 @@
 		data-auto-logout-link="true"
 		data-use-continue-as="true"
 		></div>
-
-		
       </div>
     </div>
   </div>
@@ -276,51 +193,20 @@
 		    As the event host, you pick the categories so whether it's food, drinks, or volunteers, Potlucky.com makes it easy to plan events!</p>
 				<p>If you have any feedback, please <A HREF="">contact us</A>.</p>
       </div>
-			<div>
-</script>
-</div>
     </div>
   </div>
 </div>
-</div>
-
-</body>
 
 	<script src="https://use.fontawesome.com/4913a2be10.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><link rel="stylesheet" href="https://use.fontawesome.com/4913a2be10.js">
+	<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+	<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap.min.js"></script>
 	<script type="text/javascript" src="../script.js"></script>
-	<script type="text/javascript">
-		$('#myModal').on('shown.bs.modal', function () {
-	  $('#myInput').focus()
-	});
-	</script>
-	<script src="text/javascript" src="login.js"></script>
-	<script src="text/javascript" src="fbToken.js"></script>
-	<!--<script type='text/javascript' src='js/handlebars-v4.0.11.js'></script>
-	<script type='text/javascript' src='js/name-table.js'></script>-->
+  <script type="text/javascript" src="login.js"></script> 
+  <script type="text/javascript" src="fbToken.js"></script>
 
 
-	<!--<script>
-  		window.fbAsyncInit = function() {
-    	FB.init({
-      		appId      : '641150372941911',
-      		cookie     : true,
-      		xfbml      : true,
-      		version    : 'v2.11'
-    	});
-
-    	FB.AppEvents.logPageView();
-
-  	};
-
-  		(function(d, s, id){
-     		var js, fjs = d.getElementsByTagName(s)[0];
-     		if (d.getElementById(id)) {return;}
-     		js = d.createElement(s); js.id = id;
-     		js.src = "https://connect.facebook.net/en_US/sdk.js";
-     		fjs.parentNode.insertBefore(js, fjs);
-   		}(document, 'script', 'facebook-jssdk'));
-	</script>-->
-	<!--<script type="text/javascript" src="/..server.js"-->
+</body>
 </html>

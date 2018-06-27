@@ -1,0 +1,89 @@
+body { padding-top: 70px; }
+
+font-family: 'Shrikhand', cursive;
+font-family: 'Lato', sans-serif;
+font-family: 'Roboto', sans-serif;
+
+body{font-family: 'Lato'; margin:0; padding: 0; font-size: 16px;}
+h1{font-family: 'Shrikhand', cursive;  text-align: center;}
+h2{font-family: text-align: center;}
+
+#modal-share {
+	.modal-header .close {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+	}
+	.modal-title {
+	}
+	li {
+		margin-bottom: 15px;
+		color: #fff;
+		a {
+			text-transform: uppercase;
+			color: #fff;
+			font-weight: 700;
+			width: 100%;
+			max-width: 300px;
+		}
+		a.btn-facebook {
+			background: #3b5998;
+		}
+		a.btn-twitter {
+			background: #00acee;
+		}
+		a.btn-linkedin {
+			background: #0e76a8;
+		}
+		a.btn-email {
+			background: #ddd;
+			color: #444;
+		}
+	}
+}
+
+@import "bourbon";
+
+// Breakpoints
+$bp-maggie: 15em;
+$bp-lisa: 30em;
+$bp-bart: 48em;
+$bp-marge: 62em;
+$bp-homer: 75em;
+
+// Styles
+* {
+ @include box-sizing(border-box);
+
+ &:before,
+ &:after {
+   @include box-sizing(border-box);
+ }
+}
+
+body {
+  font-family: $helvetica;
+  color: rgba(94,93,82,1);
+}
+
+a {
+  color: rgba(51,122,168,1);
+
+  &:hover,
+  &:focus {
+    color: rgba(75,138,178,1);
+  }
+}
+
+.container {
+  margin: 5% 3%;
+
+  @media (min-width: $bp-bart) {
+    margin: 2%;
+  }
+
+  @media (min-width: $bp-homer) {
+    margin: 2em auto;
+    max-width: $bp-homer;
+  }
+}
