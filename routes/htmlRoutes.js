@@ -1,7 +1,3 @@
-//dependency
-var path = require("path");
-var dbMethod = require("../controllers/dbMethod.js")
-//routes
 module.exports = function(app) {
 	app.get("/", function(request, result) {
 		result.sendFile(path.join(__dirname + "/../public/index.html"));

@@ -11,7 +11,7 @@ var bodyParser = require("body-parser");
 ////////////////////////////////////////////////////////////
 
 var dbMethods = require('./controllers/dbMethod.js');
-var models = require('./models'); // Pulls out the potluck Models
+var models = require('./models'); // Pulls out the various objects for sale and the user model
 
 // Extracts the sequelize connection from the models object makes the various assocation
 var sequelizeConnection = models.sequelize;

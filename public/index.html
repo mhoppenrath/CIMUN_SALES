@@ -9,48 +9,14 @@
     <link rel="stylesheet" href="style.css">
 
     <!-- meta data-->
-     <title>Potlucky - Let's Start a Party</title>
-     <meta name="description" content="Potlucky helps you create, manage and organize better gatherings." />
+     <title>CIMUN Merch</title>
+     <meta name="description" content="CIMUN MERCH" />
 
 </head>
 <body>
-	<!--JavaScript SDK-->
-	<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=641150372941911';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-	<!--facebook analytics-->
-
-<script>
-  window.fbAsyncInit = function() {
-    FB.init({
-      appId      : '641150372941911',
-      cookie     : true,
-      xfbml      : true,
-      version    : 'v2.11'
-    });
-
-    FB.AppEvents.logPageView();
-
-  };
-
-  (function(d, s, id){
-     var js, fjs = d.getElementsByTagName(s)[0];
-     if (d.getElementById(id)) {return;}
-     js = d.createElement(s); js.id = id;
-     js.src = "https://connect.facebook.net/en_US/sdk.js";
-     fjs.parentNode.insertBefore(js, fjs);
-   }(document, 'script', 'facebook-jssdk'));
-</script>
-
 
 <script id="template" type="text/x-handlebars-template">
-			<div class="container">
+			<div class="Product holder">
 			<h2>{{eventName}}</h2>
 			<div class="row">
 				<div class="col-xs-12"><strong>Host:</strong> {{host}}</div>
@@ -75,14 +41,6 @@
 		</div>
 	</script>
 
-	<!--Facebook SDK-->
-	<script>(function(d, s, id) {
-	  var js, fjs = d.getElementsByTagName(s)[0];
-	  if (d.getElementById(id)) return;
-	  js = d.createElement(s); js.id = id;
-	  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11';
-	  fjs.parentNode.insertBefore(js, fjs);
-	}(document, 'script', 'facebook-jssdk'));</script>
 
 	<nav class="navbar navbar-default navbar-fixed-top">
   <div class="container-fluid">
@@ -94,16 +52,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="#">Potlucky!</a>
+      <a class="navbar-brand" href="#">CIMUN Store!</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav">
-        <li><a href="profile.html">My Profile<span class="sr-only">(current)</span></a></li>
-        <li><a href="event-admin.html">New Potluck</a></li>
-				<li><a href="#aboutModal" data-toggle="modal" data-target="#aboutModal">About</a></li>
-				<li><a href="https://github.com/chadobryhim/potlucky" target="_blank">Github</a></li>
+        <li><a href="http://www.cimun.org/">Return to CIMUN.org<span class="sr-only">(current)</span></a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#loginModal" data-toggle="modal" data-target="#loginModal">Login</a></li>
@@ -115,51 +70,8 @@
 <div class="container">
 <div class="jumbotron">
 	<div class="page-header">
-	  <h1><a href="index.html">Potlucky!</a></h1>
+	  <h1><a href="index.html">CIMUN Merch!</a></h1>
 	</div>
-
-					<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=641150372941911';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-					<script>
-  		window.fbAsyncInit = function() {
-    	FB.init({
-      		appId      : '641150372941911',
-      		cookie     : true,
-      		xfbml      : true,
-      		version    : 'v2.11'
-    	});
-
-    	FB.AppEvents.logPageView();
-
-			FB.Event.subscribe('xfbml.render', finished_rendering);
-
-
-  	};
-
-  		(function(d, s, id){
-     		var js, fjs = d.getElementsByTagName(s)[0];
-     		if (d.getElementById(id)) {return;}
-     		js = d.createElement(s); js.id = id;
-     		js.src = "https://connect.facebook.net/en_US/sdk.js";
-     		fjs.parentNode.insertBefore(js, fjs);
-   		}(document, 'script', 'facebook-jssdk'));
-	</script>
-
-
-<!--<fb:login-button
-  scope="public_profile,email"
-  onlogin="checkLoginState();">
-</fb:login-button>-->
-
-<!--<div class="fb-login-button" data-width="20" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>-->
-
 
 	<div class="panel panel-primary">
 	  <div class="panel-heading">
@@ -171,97 +83,8 @@
 	  </div>
 	</div>
 
-	<!-- Button trigger modal -->
-	<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#loginModal">
-	  Get Started
-	</button>
-
-	<!--Facebook Login Button -->
-	<script>
-	var finished_rendering = function() {
-	console.log("finished rendering plugins");
-	var spinner = document.getElementById("spinner");
-	spinner.removeAttribute("style");
-	spinner.removeChild(spinner.childNodes[0]);
-	}
-	</script>
-
-	
-
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        <h4 class="modal-title" id="myModalLabel">Get Started</h4>
-      </div>
-      <div class="modal-body">
-				<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.11&appId=641150372941911';
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-					<script>
-  		window.fbAsyncInit = function() {
-    	FB.init({
-      		appId      : '641150372941911',
-      		cookie     : true,
-      		xfbml      : true,
-      		version    : 'v2.11'
-    	});
-
-    	FB.AppEvents.logPageView();
-
-			FB.Event.subscribe('xfbml.render', finished_rendering);
-
-
-  	};
-
-  		(function(d, s, id){
-     		var js, fjs = d.getElementsByTagName(s)[0];
-     		if (d.getElementById(id)) {return;}
-     		js = d.createElement(s); js.id = id;
-     		js.src = "https://connect.facebook.net/en_US/sdk.js";
-     		fjs.parentNode.insertBefore(js, fjs);
-   		}(document, 'script', 'facebook-jssdk'));
-
-	</script>
-
-
-<fb:login-button
-  scope="public_profile,email"
-  onlogin="checkLoginState();">
-</fb:login-button>
-
-<br>
-<br>
-
-<div class="fb-login-button" data-width="30" data-max-rows="1" data-size="medium" data-button-type="login_with" data-show-faces="false" data-auto-logout-link="false" data-use-continue-as="true"></div>
-				<br>
-				<br>
-
-	<div
-		class="fb-login-button"
-		data-max-rows="1"
-		data-size="large"
-		data-button-type="continue_with"
-		data-show-faces="false"
-		data-auto-logout-link="true"
-		data-use-continue-as="true"
-		></div>
-
-		
-      </div>
-    </div>
-  </div>
-</div>
 
 <div class="modal fade" id="aboutModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
   <div class="modal-dialog" role="document">
@@ -271,19 +94,14 @@
         <h4 class="modal-title" id="myModalLabel">What is this?</h4>
       </div>
       <div class="modal-body">
-				<p>Potlucky is a tool to help party planners be more organized.</p>
-				<p>You can create a quick, simple, custom online sign-up sheet for friends and family.
-		    As the event host, you pick the categories so whether it's food, drinks, or volunteers, Potlucky.com makes it easy to plan events!</p>
-				<p>If you have any feedback, please <A HREF="">contact us</A>.</p>
+				<p>You can Order all your CIMUN merch here and avoid the wait</p>
+				<p>You can put in your order here, and when you get to the confrence you can pickup your purchases at the merch stand and either pay there or here.
+					Please provide a valid ID so we can verify you are you and you can get on your way
+				</p>
       </div>
-			<div>
-</script>
-</div>
     </div>
   </div>
 </div>
-</div>
-
 </body>
 
 	<script src="https://use.fontawesome.com/4913a2be10.js"></script>
@@ -297,30 +115,5 @@
 	</script>
 	<script src="text/javascript" src="login.js"></script>
 	<script src="text/javascript" src="fbToken.js"></script>
-	<!--<script type='text/javascript' src='js/handlebars-v4.0.11.js'></script>
-	<script type='text/javascript' src='js/name-table.js'></script>-->
 
-
-	<!--<script>
-  		window.fbAsyncInit = function() {
-    	FB.init({
-      		appId      : '641150372941911',
-      		cookie     : true,
-      		xfbml      : true,
-      		version    : 'v2.11'
-    	});
-
-    	FB.AppEvents.logPageView();
-
-  	};
-
-  		(function(d, s, id){
-     		var js, fjs = d.getElementsByTagName(s)[0];
-     		if (d.getElementById(id)) {return;}
-     		js = d.createElement(s); js.id = id;
-     		js.src = "https://connect.facebook.net/en_US/sdk.js";
-     		fjs.parentNode.insertBefore(js, fjs);
-   		}(document, 'script', 'facebook-jssdk'));
-	</script>-->
-	<!--<script type="text/javascript" src="/..server.js"-->
 </html>

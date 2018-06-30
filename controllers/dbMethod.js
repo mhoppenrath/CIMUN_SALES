@@ -7,58 +7,31 @@ var methods = {
 //////////////////////////////////////////////////////////////////////////////
     //creates the assocations necessary to conenct all the tables in the db
     associate : function () {
-      //user table has many in the potluck users
-      db.user.hasMany(db.userPotluck, {as: 'UserPotluck', foreignKey: 'userId', sourceKey: 'userId', onDelete: 'cascade'});
-      db.userPotluck.belongsTo(db.user,{as: 'UserPotluck', foreignKey: 'userId', sourceKey: 'userId'});
+      db.Users.hasMany(db.Purchases, {foreignKey: 'user_id', sourceKey: 'user_id', onDelete: 'cascade'});
+      db.Purchases.belongsTo(db.Users, {foreginKey:'user_id', sourceKey: 'user_id'});
 
-      //user types to userPotluck
-      db.userType.hasMany(db.userPotluck, {as: 'UserType', foreignKey: 'userTypeId', sourceKey: 'userTypeId', onDelete: 'cascade'});
-      db.userPotluck.belongsTo(db.userType, {as: 'UserType', foreignKey: 'userTypeId', sourceKey: 'userTypeId'});
-
-      //potluck to user potlucks
-      db.potluck.hasMany(db.userPotluck, {foreignKey: 'potLuckId', sourceKey: 'potLuckId', onDelete: 'cascade'});
-      db.userPotluck.belongsTo(db.potluck, {foreignKey: 'potLuckId', sourceKey: 'potLuckId'});
-
-      //potlucks to potLuckItems
-      db.potluck.hasMany(db.item, {foreignKey: 'potLuckId', sourceKey: 'potLuckId', onDelete: 'cascade'});
-      db.item.belongsTo(db.potluck, {foreignKey: 'potLuckId', sourceKey: 'potLuckId'});
-
-      //category to potLuckItems
-      db.category.hasMany(db.item, {foreignKey: 'categoryId', sourceKey: 'categoryId', onDelete: 'cascade'});
-      db.item.belongsTo(db.category, {foreignKey: 'categoryId', sourceKey: 'categoryId'});
+      db.Store.hasMany(db.Purchases, {foreignKey: 'product_id', sourceKey: 'product_id', onDelete: 'cascade'});
+      db.Purchases.belongsTo(db.Store, {foreignKey: 'product_id', sourceKey: 'product_id'});
     },
 
 
     initTables : function(){
-      //makes the initial table and makes sure it is the only stuff for it for both User type and categories
-
-
-      db.userType.create({userType: "User"});
-      db.userType.create({userType: "Admin"});
-      db.userType.create({userType: "SuperAdmin"});
-
-      db.category.create({category: "Appetizers"});
-      db.category.create({category: "Entrees"});
-      db.category.create({category: "Desserts"});
-      db.category.create({category: "Drinks"});
-      db.category.create({category: "Other"});
-
+      //makes the initial table and craetes the models for the store and the user model
+      db.Store.create({product: "CIMUN Shirt", product_meaning: "SHIRT_XIV", cost: 10, variation: "Small", active_id: 1});
+      db.Store.create({product: "CIMUN Shirt", product_meaning: "SHIRT_XIV", cost: 10, variation: "Medium", active_id: 1});
+      db.Store.create({product: "CIMUN Shirt", product_meaning: "SHIRT_XIV", cost: 10, variation: "Large", active_id: 1});
+      db.Store.create({product: "CIMUN Shirt", product_meaning: "SHIRT_XIV", cost: 10, variation: "X-large", active_id: 1});
     },
 
+    //for future confrences use the confrence to disgiguish the item, though we will indicate on the Purchases table when they bought it, this lets us track iff we sell
+    //thigs in diffrent years
     initDummies : function(){
-      db.user.create({fbID:"65498138498466", name:"Chad Mc'Irishman"});
-      db.user.create({fbID:"56486159844887", name:"Michael Von Germanboy"});
-      db.user.create({fbID:"56198465167986", name:"Rebecca IDK"});
 
-      db.potluck.create({date: 12-16-2017,startTime:"17:00",endTime:"22:00",location:"The Castle",eventURL:"Coolio.com",phone:9999999999,email:"McHop@yahoo.com",details:"a Rager to end all rages",staticURL:"af5e4wa9f8as1d5"});
 
-      db.item.create({assigned:"Rebbecca",item_name:"Quiche",notes:null,potLuckId: 1,categoryID:1})
-      db.item.create({assigned:"Michael",item_name:"Beer",notes:"None of the Cheap stuff",potLuckId: 1,categoryID:4})
-      db.item.create({assigned:"Chad",item_name:"Bacon",notes:"BAAAAACCCCCCCOOOOOONNNN",potLuckId: 1,categoryID:2})
+      db.Users.create({date: 08-16-2018, first_name: "Elliot", last_name: "Young", email: "ImaMonkey@aol.com", school: "None"});
 
-      db.userPotluck.create({userId:1,userTypeId:1,potLuckId:1});
-      db.userPotluck.create({userId:2,userTypeId:2,potLuckId:1});
-      db.userPotluck.create({userId:3,userTypeId:1,potLuckId:1});
+      db.Purchases.create({user_id: 1, product_id: 2, quanity: 30, paid: 0, picked_up: 0})
+
     },
 //////////////////////////////////////////////////////////////////////////////
 //                        Testing and Random Generator                      //
@@ -74,17 +47,7 @@ var methods = {
       return text;
     },
 
-    //takes the User token from the Facebook Oath, tests the token in the db, and if it does not exist it creates an entry in our database
-    loginNTest : function(userID, thisName) {
-      var test = db.user.count({ where: { fbID: userID } })
-      if (test === 0) {
-        db.user.create({
-          fbID: userID,
-          name: thisName
-        });
-      }
-      return fbID;
-    },
+
 
     //tests if a user is admin of an event and if they are it returns true
     adminTest : function(userID,eventID) {
@@ -106,60 +69,66 @@ var methods = {
 //////////////////////////////////////////////////////////////////////////////
 //                        Creation Events                                   //
 //////////////////////////////////////////////////////////////////////////////
-    //creates an event based on a sumbission object that gets posted from the front
-    createEvent : function(submission, id) {
+    //creates the User/Purchase in one go based on a sumbission object that gets posted from the front
+    createUserPurchase : function(submission, id) {
       var  text,
             test,
             plID;
-    //tests to be sure that the "static" id hasn't been used before
-      do {
-
-        text = makeid();
-        test = db.potluck.count({ where: { staticURL: text } })
-      } while (test != 0);
-      //creates the entry for the potluck
-      db.potlucks.create({
-        date : submission.date,
-        startTime:submission.startTime,
-        endTime: submission.endTime,
-        location: submission.location,
-        phone: submission.Phone,
-        email: submission.email,
-        details: submission.details,
-        staticURL: text
-      });
-      //finds the ID of the entry we just submitted
-      db.potlucks.findAll({
-        where : {
-          staticURL: staticURL
+      //creates the entry for user if not allready in the system
+      db.User.findAll({
+        where: {
+          first_name: submission.fist_name,
+          last_name: submission.last_name,
+          email: submission.last_name,
+          school:submission.school
         }}).then(function(data){
-          var userObject = { potluck: data };
-          plID = data.potLuckId;
+          if (data.user_id != null) {
+            db.User.create({
+              date : submission.date,
+              first_name:submission.first_name,
+              last_name: submission.last_name,
+              email: submission.email,
+              school: submission.school,
+            });
+          }
         });
-      //creates an entry onto the userPotluck tablewith the new potluck id and other relevent info
-      db.userpotluck.create({
-        userTypeId: 2,
-        userId: id,
-        potLuckId: plID
-      });
-      return plID;
-    },
-    //Creates a non Admin user to the table (currently the same as before but hopefully we can authenticate it)
-    addUserPotluck : function(UId,PLId){
-      db.userPotluck.create({
-        userType: 1,
-        userId: UId,
-        potLuckId: PLId
-      });
+
+      //get's the Uer_id of our person
+      db.User.findAll({
+        where : {
+          first_name: submission.fist_name,
+          last_name: submission.last_name,
+          email: submission.last_name,
+          school:submission.school
+        }}).then(function(data){
+          var user_object = { potluck: data };
+          user_id = data.user_id;
+        });
+      //creates the relivent entries on the Purchase table
+      for (var i = 0; i < Purchases.length(); i++)
+        db.Store.findAll({
+          where: {
+            first_name: submission.fist_name,
+            last_name: submission.last_name,
+            email: submission.last_name,
+            school:submission.school
+          }}).then(function(data){
+              db.Prucheses.create({
+                date : submission.date,
+                user_id: user_id,
+                product_id: data.product_id,
+                quanity: submission.quanity,
+                paid: submission.paid
+              });
+        });
     },
 
-    //adds an item to the table.
-    addItem : function(submission, PlID) {
-      db.Item.create({
-        assigned: submission.assigned,
-        item_name: submission.item_name,
-        notes: sumbission.notes,
-        potLuckId: plID
+    //adds an item to the store.
+    addItem : function(submission) {
+      db.Store.create({
+        product: submission.product,
+        product_meaning: submission.product, //string method
+        cost: submission.cost,
       });
     },
 
@@ -167,80 +136,33 @@ var methods = {
 //                        Reading events                                    //
 //////////////////////////////////////////////////////////////////////////////
 
-    userEvents: function(fbID){
+    Store: function(){
       // Sequelize Query to get all burgers from database (and join them to their devourers, if applicable)
-      db.UserPotluck.findAll({
-        where : {
-          fbID: fbID
-        },
-        include: [{model: models.potluck}]
+      db.Store.findAll({
       }).then(function(data){
-        var userObject = { potluck: data };
-        return userObject;
+        var storeItems = { Store: data };
+        return StoreItems;
       });
-    },
-    //pulls specifically the details for the potluck itself
-    potLuckDetails : function(potLuckID) {
-      db.potluck.findAll({
-        where: {
-          potLuckId : potLuckID
-        }
-      }).then(function(data) {
-        var potluckObject = data;
-        return potluckObject;
-      })
-    },
-    //pulls the item details of the potluck
-    potLuckItems: function(potLuckId){
-      db.items.finalAll({
-        where :{
-          potLuckId:potLuckId
-        }.then(function(data){
-          var potluckItem = {items: data};
-          return potluckItem
-        })
-      })
     },
 //////////////////////////////////////////////////////////////////////////////
 //                        Update Event                                      //
 //////////////////////////////////////////////////////////////////////////////
 
-    updateEvent: function(eventID, object){
-      db.potlucks.update({
-        date: object.date,
-        startTime: object.startTime,
-        endTime: object.endTime,
-        location: object.location,
-        eventURL: object.eventURL,
-        phone: object.phone,
-        emial: object.email,
-        details: object.details
+    //meanings are ment to be unmutable so don't screw with that unless your editing in mySQL workench
+    updateStore: function(product_id, object){
+      db.Store.update({
+        product: object.product,
+        cost: object.cost,
+        variantion: object.variation,
+        active_id: object.active_id
       }, {
-        where: { potLuckId: eventID},
-      });
-    },
-    updateItem: function(itemID,object){
-      db.items.update({
-        assigned: object.assigned,
-        item_name: object.item_name,
-        notes: object.notes,
-        categoryId: object.categoryId
-      }, {
-        where : {itemID:itemID}
+        where: { product_id: product_id},
       });
     },
 //////////////////////////////////////////////////////////////////////////////
 //                       Delete Event                                       //
 /////////////////////////////////////////////////////////////////////////////
-    deleteUser: function(fbID) {
-    },
-    removeFromEvent: function (fbID) {
 
-    },
-    deleteEvent: function(eventID) {
-    },
-    deleteItem: function(itemID) {
-    }
 };
 
 
